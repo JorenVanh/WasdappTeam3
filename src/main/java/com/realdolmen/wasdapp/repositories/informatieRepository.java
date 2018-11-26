@@ -25,6 +25,5 @@ public class informatieRepository {
     public static final String E_MAIL = "e_mail";
     public static final String PRIJS = "prijs";
     public static final String PERSOON = "persoon";
-    public static final String IETS = "iets";
     
 }
