@@ -33,6 +33,11 @@ public class NewMain {
         infos.add(new Informatie("haha2", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x", 0, "Joren"));
         infos.add(new Informatie("haha3", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x", 0, "Joren"));              
        infoservice.insertItems(infos);
+       
+       
+       
+       
+       
   
 
         
@@ -40,3 +45,5 @@ public class NewMain {
     }
     
 }
+
+
