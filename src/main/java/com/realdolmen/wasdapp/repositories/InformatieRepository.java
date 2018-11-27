@@ -26,4 +26,9 @@ public class InformatieRepository {
     public static final String PRIJS = "prijs";
     public static final String PERSOON = "persoon";
     
+    public InformatieRepository(){
+        
+    }
+   
+    
 }
