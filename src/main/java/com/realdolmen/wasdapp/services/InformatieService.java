@@ -5,10 +5,30 @@
  */
 package com.realdolmen.wasdapp.services;
 
+import com.realdolmen.wasdapp.domain.Informatie;
+import com.realdolmen.wasdapp.exceptions.NoQueryPossibleException;
+import com.realdolmen.wasdapp.repositories.AbstractRepository;
+import com.realdolmen.wasdapp.repositories.InformatieRepository;
+import java.util.List;
+
 /**
  *
  * @author KDLBL62
  */
 public class InformatieService {
+    private InformatieRepository informatieRepository;
+
+    public InformatieService(InformatieRepository informatieRepository) 
+    {
+        this.informatieRepository = informatieRepository; 
+    }
     
+    public List<Informatie>findAll() throws NoQueryPossibleException{
+        
+        return informatieRepository.findAll();
+    }
+//     public Informatie insertData(Informatie informatie) throws NoQueryPossibleException {
+//        int i = informatieRepository.insertItem(informatie);
+//        return findAddressById(i);
+//    }
 }
