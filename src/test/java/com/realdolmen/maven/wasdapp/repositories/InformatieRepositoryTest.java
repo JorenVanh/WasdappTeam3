@@ -25,6 +25,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.hamcrest.CoreMatchers;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +34,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -104,6 +107,20 @@ public class InformatieRepositoryTest {
         verify(resultSet, times(1)).getString(InformatieRepository.TELEFOON);
         verify(resultSet, times(1)).getString(InformatieRepository.E_MAIL);
         verify(resultSet, times(1)).getDouble(InformatieRepository.PRIJS);
+    }
+   
+    
+    
+     @Test
+    public void createObjectTestThrowsSQLException() throws SQLException {
+        //init data
+        when(resultSet.getString(informatieRepository.KEY)).thenThrow(SQLException.class);
+        //test the object
+        Informatie result = informatieRepository.createObject(resultSet);
+        //verify the result
+        assertNull(result);
+        verify(resultSet, times(1)).getString(InformatieRepository.KEY);
+        verifyNoMoreInteractions(resultSet);
     }
 }
           
