@@ -10,7 +10,7 @@ package com.realdolmen.wasdapp.exceptions;
  * @author demun
  */
 public class NoQueryPossibleException extends Exception{
-    private static final String MESSAGE = "U naam mag NIET leeg "; 
+    private static final String MESSAGE = "U naam mag NIET leeg zijn."; 
     public NoQueryPossibleException() {
     }
 
