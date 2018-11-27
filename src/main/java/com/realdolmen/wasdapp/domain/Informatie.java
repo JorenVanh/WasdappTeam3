@@ -36,6 +36,10 @@ public class Informatie {
         
     }
 
+    public Informatie() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getTitel() {
         return titel;
     }

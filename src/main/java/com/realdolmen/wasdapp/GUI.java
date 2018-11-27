@@ -5,9 +5,11 @@
  */
 package com.realdolmen.wasdapp;
 
+import com.realdolmen.wasdapp.domain.Informatie;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 
 /**
@@ -63,6 +65,11 @@ public class GUI extends javax.swing.JFrame {
 
         jButton2.setText("Stuur data door");
         jButton2.setActionCommand("");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Genereer PDF");
 
@@ -124,8 +131,31 @@ public class GUI extends javax.swing.JFrame {
         }
     } else {
         System.out.println("File access cancelled by user.");
-    }
+    }    
     }//GEN-LAST:event_jButton1ActionPerformed
+double ParseDouble(String strNumber) {
+   if (strNumber != null && strNumber.length() > 0) {
+       try {
+          return Double.parseDouble(strNumber);
+       } catch(Exception e) {
+          return -1;   // or some value to mark this field is wrong. or make a function validates field first ...
+       }
+   }
+   else return 0;
+}
+    ArrayList<Informatie> info = new ArrayList<Informatie>();
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String[] line = jTextArea1.getText().split("\n");
+        for (int i=1;i<line.length;i++){
+            System.out.println(line[i]);
+           String[] data = line[i].split(",");
+           for (int x=0; x < data.length; x++){
+               info.add(new Informatie(data[0],data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], ParseDouble(data[12]), data[13])) ;         
+           }          
+        }
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
