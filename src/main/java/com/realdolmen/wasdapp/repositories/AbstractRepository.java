@@ -38,12 +38,14 @@ public abstract class AbstractRepository<C,T> {
         this.url = url;
     }
       public Connection createConnection() throws SQLException {
+          System.out.println("trying connection");
         return DriverManager.getConnection(url, LOGIN, PASSWORD);
     }
-
+      
     public List<C> findAll() throws NoQueryPossibleException {
         List<C> listToFill = null;
         try (Connection connection = createConnection()) {
+            System.out.println("connection succes");
             PreparedStatement pstatement = connection.prepareStatement("SELECT * FROM " + tableName);
             ResultSet resultSet = pstatement.executeQuery();
             listToFill = new ArrayList<>();
