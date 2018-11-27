@@ -73,6 +73,30 @@ public abstract class AbstractRepository<C,T> {
         }
         return object;
     }*/
+    public T insertItem(C item) throws NoQueryPossibleException {
+        //Only tested for postalcode
+        try (Connection connection = createConnection()) {
+            String query = "INSERT INTO " + tableName + getColumnString() + " values " + getValuesString(item);
+            System.out.println(query);
+            PreparedStatement pstatement = connection.prepareStatement(query);
+            pstatement.executeUpdate();
+            String max = "SELECT max(" + idName + ") AS max FROM " + tableName;
+            System.out.println(max);
+            pstatement = connection.prepareStatement(max);
+            ResultSet resultSet = pstatement.executeQuery();
+            T r = null;
+            if (resultSet.next()) {
+                System.out.println("in resultset");
+                r = (T) resultSet.getObject(1);
+            }
+            System.out.println(r.getClass()+" "+r.toString());
+            return r;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new NoQueryPossibleException("Insert " + tableName + " can not be excecuted ");
+        }
+    }
+
     
      public abstract C createObject(ResultSet resultSet);
      

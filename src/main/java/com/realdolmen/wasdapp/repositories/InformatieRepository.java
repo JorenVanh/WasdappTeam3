@@ -7,7 +7,7 @@ package com.realdolmen.wasdapp.repositories;
 
 import com.realdolmen.wasdapp.domain.Informatie;
 import com.realdolmen.wasdapp.exceptions.NoQueryPossibleException;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.TITEL;
+//import static com.realdolmen.wasdapp.repositories.InformatieRepository.TITEL;
 import static com.realdolmen.wasdapp.repositories.InformatieRepository.LOCATIE;
 import static com.realdolmen.wasdapp.repositories.InformatieRepository.STRAAT;
 import static com.realdolmen.wasdapp.repositories.InformatieRepository.NUMMER;
@@ -31,7 +31,7 @@ public class InformatieRepository extends AbstractRepository<Informatie, String>
     
     public static final String KEY = "titel";
     public static final String TABLE_NAME = "informatie";
-    public static final String TITEL = "titel";
+    //public static final String TITEL = "titel";
     public static final String LOCATIE = "locatie";
     public static final String STRAAT = "straat";
     public static final String NUMMER = "nummer";
@@ -53,7 +53,7 @@ public class InformatieRepository extends AbstractRepository<Informatie, String>
     public Informatie createObject(ResultSet resultSet) {
         try {
             Informatie informatie = new Informatie();
-            informatie.setTitel(resultSet.getString(TITEL));
+            informatie.setTitel(resultSet.getString(KEY));
             informatie.setLocatie(resultSet.getString(LOCATIE));
             informatie.setStraat(resultSet.getString(STRAAT));
             informatie.setNummer(resultSet.getString(NUMMER));
@@ -78,12 +78,15 @@ public class InformatieRepository extends AbstractRepository<Informatie, String>
 
     @Override
     public String getColumnString() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return "("+KEY+","+LOCATIE+","+STRAAT+","+NUMMER+","+POSTCODE+","+GEMEENTE+","+LAND+","+OMSCHRIJVING+WIKIPEDIA_LINK+WIKIPEDIA_LINK+WEBSITE+TELEFOON+E_MAIL+PRIJS+PERSOON+")";
     }
 
     @Override
-    public String getValuesString(Informatie c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String getValuesString(Informatie informatie) {
+        if(informatie == null){
+            throw new NullPointerException("The information you have given is null");
+        }
+        return "("+informatie.getTitel()+",'"+ informatie.getLocatie()+"','"+informatie.getStraat()+"','"+informatie.getNummer()+"','"+informatie.getPostcode()+"','"+informatie.getGemeente()+"','"+informatie.getLand()+"','"+informatie.getOmschrijving()+"','"+informatie.getWiki_link()+"','"+informatie.getWebsite()+"','"+informatie.getTelefoon()+"','"+informatie.getEmail()+"',"+informatie.getPrijs()+",'"+informatie.getPersoon()+"')";    
     }
     
 }

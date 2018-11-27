@@ -31,4 +31,7 @@ public class InformatieService {
 //        int i = informatieRepository.insertItem(informatie);
 //        return findAddressById(i);
 //    }
+    
+    
+    
 }

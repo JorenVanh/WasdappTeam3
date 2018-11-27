@@ -19,7 +19,6 @@ import static com.realdolmen.wasdapp.repositories.InformatieRepository.POSTCODE;
 import static com.realdolmen.wasdapp.repositories.InformatieRepository.PRIJS;
 import static com.realdolmen.wasdapp.repositories.InformatieRepository.STRAAT;
 import static com.realdolmen.wasdapp.repositories.InformatieRepository.TELEFOON;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.TITEL;
 import static com.realdolmen.wasdapp.repositories.InformatieRepository.WEBSITE;
 import static com.realdolmen.wasdapp.repositories.InformatieRepository.WIKIPEDIA_LINK;
 import java.sql.ResultSet;
@@ -59,7 +58,7 @@ public class InformatieRepositoryTest {
     @Test
     public void createObjectTestSucces() throws SQLException, NoQueryPossibleException {
         //init data
-        when(resultSet.getString(InformatieRepository.TITEL)).thenReturn("titel");
+        when(resultSet.getString(InformatieRepository.KEY)).thenReturn("titel");
         when(resultSet.getString(InformatieRepository.LOCATIE)).thenReturn("locatie");
         when(resultSet.getString(InformatieRepository.STRAAT)).thenReturn("straat");
         when(resultSet.getString(InformatieRepository.NUMMER)).thenReturn("nummer");
@@ -91,14 +90,14 @@ public class InformatieRepositoryTest {
         assertEquals("email", result.getEmail());
         assertThat(1.0, CoreMatchers.equalTo(result.getPrijs()));
        
-        verify(resultSet, times(1)).getString(InformatieRepository.TITEL);
+        verify(resultSet, times(1)).getString(InformatieRepository.KEY);
         verify(resultSet, times(1)).getString(InformatieRepository.LOCATIE);
         verify(resultSet, times(1)).getString(InformatieRepository.STRAAT);
         verify(resultSet, times(1)).getString(InformatieRepository.NUMMER);
         verify(resultSet, times(1)).getString(InformatieRepository.POSTCODE);
         verify(resultSet, times(1)).getString(InformatieRepository.GEMEENTE);
         verify(resultSet, times(1)).getString(InformatieRepository.LAND);
-        verify(resultSet, times(1)).getString(InformatieRepository.TITEL);
+        verify(resultSet, times(1)).getString(InformatieRepository.KEY);
         verify(resultSet, times(1)).getString(InformatieRepository.OMSCHRIJVING);
         verify(resultSet, times(1)).getString(InformatieRepository.WIKIPEDIA_LINK);
         verify(resultSet, times(1)).getString(InformatieRepository.WEBSITE);
