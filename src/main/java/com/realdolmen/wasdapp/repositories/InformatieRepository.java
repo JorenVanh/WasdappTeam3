@@ -78,7 +78,7 @@ public class InformatieRepository extends AbstractRepository<Informatie, String>
 
     @Override
     public String getColumnString() {
-       return "("+KEY+","+LOCATIE+","+STRAAT+","+NUMMER+","+POSTCODE+","+GEMEENTE+","+LAND+","+OMSCHRIJVING+WIKIPEDIA_LINK+WIKIPEDIA_LINK+WEBSITE+TELEFOON+E_MAIL+PRIJS+PERSOON+")";
+       return "("+KEY+","+LOCATIE+","+STRAAT+","+NUMMER+","+POSTCODE+","+GEMEENTE+","+LAND+","+OMSCHRIJVING+", "+WIKIPEDIA_LINK+", "+WEBSITE+", "+TELEFOON+", "+E_MAIL+", "+PRIJS+", "+PERSOON+")";
     }
 
     @Override
@@ -86,7 +86,7 @@ public class InformatieRepository extends AbstractRepository<Informatie, String>
         if(informatie == null){
             throw new NullPointerException("The information you have given is null");
         }
-        return "("+informatie.getTitel()+",'"+ informatie.getLocatie()+"','"+informatie.getStraat()+"','"+informatie.getNummer()+"','"+informatie.getPostcode()+"','"+informatie.getGemeente()+"','"+informatie.getLand()+"','"+informatie.getOmschrijving()+"','"+informatie.getWiki_link()+"','"+informatie.getWebsite()+"','"+informatie.getTelefoon()+"','"+informatie.getEmail()+"',"+informatie.getPrijs()+",'"+informatie.getPersoon()+"')";    
+        return "('"+informatie.getTitel()+"','"+ informatie.getLocatie()+"','"+informatie.getStraat()+"','"+informatie.getNummer()+"','"+informatie.getPostcode()+"','"+informatie.getGemeente()+"','"+informatie.getLand()+"','"+informatie.getOmschrijving()+"','"+informatie.getWiki_link()+"','"+informatie.getWebsite()+"','"+informatie.getTelefoon()+"','"+informatie.getEmail()+"',"+informatie.getPrijs()+",'"+informatie.getPersoon()+"')";    
     }
     
 }

@@ -9,6 +9,7 @@ import com.realdolmen.wasdapp.domain.Informatie;
 import com.realdolmen.wasdapp.exceptions.NoQueryPossibleException;
 import com.realdolmen.wasdapp.repositories.AbstractRepository;
 import com.realdolmen.wasdapp.repositories.InformatieRepository;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +27,10 @@ public class InformatieService {
     public List<Informatie>findAll() throws NoQueryPossibleException{
         
         return informatieRepository.findAll();
+    }
+    
+        public void insertItems(ArrayList<Informatie> infos) throws NoQueryPossibleException{
+        informatieRepository.insertItems(infos);
     }
 //     public Informatie insertData(Informatie informatie) throws NoQueryPossibleException {
 //        int i = informatieRepository.insertItem(informatie);
