@@ -6,10 +6,14 @@
 package com.realdolmen.wasdapp;
 
 import com.realdolmen.wasdapp.domain.Informatie;
+import com.realdolmen.wasdapp.exceptions.NoQueryPossibleException;
+import com.realdolmen.wasdapp.repositories.InformatieRepository;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /**
@@ -106,8 +110,8 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -126,6 +130,7 @@ public class GUI extends javax.swing.JFrame {
         try {
           // What to do with the file, e.g. display it in a TextArea
          jTextArea1.read( new FileReader( file.getAbsolutePath() ), null );
+         
         } catch (IOException ex) {
           System.out.println("problem accessing file"+file.getAbsolutePath());
         }
@@ -143,6 +148,7 @@ double ParseDouble(String strNumber) {
    }
    else return 0;
 }
+    InformatieRepository informatieRepository = new InformatieRepository();
     ArrayList<Informatie> info = new ArrayList<Informatie>();
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String[] line = jTextArea1.getText().split("\n");
@@ -152,11 +158,13 @@ double ParseDouble(String strNumber) {
            for (int x=0; x < data.length; x++){
                info.add(new Informatie(data[0],data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], ParseDouble(data[12]), data[13])) ;         
            }          
+        }     
+        try {
+            informatieRepository.insertItems(info);
+        } catch (NoQueryPossibleException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
     }//GEN-LAST:event_jButton2ActionPerformed
-
     /**
      * @param args the command line arguments
      */
