@@ -12,6 +12,11 @@ package com.realdolmen.wasdapp.domain;
 public class Informatie {
     private String titel,locatie, straat,gemeente, land, omschrijving, wiki_link, website, telefoon,email,persoon,nummer, postcode;
     private double prijs;
+
+    public Informatie() {
+    }
+    
+    
     
     public Informatie(String titel, String locatie, String straat, String nummer, String postcode, String gemeente, String land, String omschrijving, String wiki_link, String website, String telefoon, String email, double prijs, String persoon){
         this.titel = titel;

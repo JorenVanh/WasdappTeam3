@@ -5,12 +5,32 @@
  */
 package com.realdolmen.wasdapp.repositories;
 
-/**
- *
- * @author KDLBL62
- */
-public class InformatieRepository {
+import com.realdolmen.wasdapp.domain.Informatie;
+import com.realdolmen.wasdapp.exceptions.NoQueryPossibleException;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.TITEL;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.LOCATIE;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.STRAAT;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.NUMMER;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.POSTCODE;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.GEMEENTE;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.LAND;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.OMSCHRIJVING;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.WIKIPEDIA_LINK;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.WEBSITE;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.TELEFOON;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.E_MAIL;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.PRIJS;
+import static com.realdolmen.wasdapp.repositories.InformatieRepository.PERSOON;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class InformatieRepository extends AbstractRepository<Informatie, String>{
     
+    public static final String KEY = "titel";
+    public static final String TABLE_NAME = "informatie";
     public static final String TITEL = "titel";
     public static final String LOCATIE = "locatie";
     public static final String STRAAT = "straat";
@@ -27,8 +47,43 @@ public class InformatieRepository {
     public static final String PERSOON = "persoon";
     
     public InformatieRepository(){
+        super(TABLE_NAME, KEY);
+    }
+   @Override
+    public Informatie createObject(ResultSet resultSet) {
+        try {
+            Informatie informatie = new Informatie();
+            informatie.setTitel(resultSet.getString(TITEL));
+            informatie.setLocatie(resultSet.getString(LOCATIE));
+            informatie.setStraat(resultSet.getString(STRAAT));
+            informatie.setNummer(resultSet.getString(NUMMER));
+            informatie.setPostcode(resultSet.getString(POSTCODE));
+            informatie.setGemeente(resultSet.getString(GEMEENTE));
+            informatie.setLand(resultSet.getString(LAND));
+            informatie.setOmschrijving(resultSet.getString(OMSCHRIJVING));
+            informatie.setWiki_link(resultSet.getString(WIKIPEDIA_LINK));
+            informatie.setWebsite(resultSet.getString(WEBSITE));
+            informatie.setTelefoon(resultSet.getString(TELEFOON));
+            informatie.setEmail(resultSet.getString(E_MAIL));
+            informatie.setPersoon(resultSet.getString(PERSOON));
+            informatie.setPrijs(resultSet.getDouble(PRIJS));
+
+             return informatie;
+            
+        } catch (SQLException e) {
+            return null;
+        }
         
     }
-   
+
+    @Override
+    public String getColumnString() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getValuesString(Informatie c) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

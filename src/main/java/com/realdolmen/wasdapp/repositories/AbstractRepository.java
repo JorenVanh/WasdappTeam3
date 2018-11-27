@@ -21,7 +21,7 @@ public abstract class AbstractRepository<C,T> {
      public static final String LOGIN = "root";
     public static final String PASSWORD = "root";
     public static String DRIVER = "com.mysql.jdbc.Driver";
-    public static String URL = "";
+    public static String URL = "jdbc:mysql://localhost:3306/wasdapp?autoReconnect=true&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private String tableName;
     private String idName;
     private String url;
@@ -41,7 +41,7 @@ public abstract class AbstractRepository<C,T> {
         return DriverManager.getConnection(url, LOGIN, PASSWORD);
     }
 
-    /*public List<C> findAll() throws NoQueryPossibleException {
+    public List<C> findAll() throws NoQueryPossibleException {
         List<C> listToFill = null;
         try (Connection connection = createConnection()) {
             PreparedStatement pstatement = connection.prepareStatement("SELECT * FROM " + tableName);
@@ -55,7 +55,7 @@ public abstract class AbstractRepository<C,T> {
         }
         return listToFill;
     }
-
+/*
     public C findById(T id) throws NoQueryPossibleException {
         C object = null;
         try (Connection connection = createConnection()) {
