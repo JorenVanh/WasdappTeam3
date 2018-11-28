@@ -109,8 +109,6 @@ public class InformatieRepositoryTest {
         verify(resultSet, times(1)).getDouble(InformatieRepository.PRIJS);
     }
    
-    
-    
      @Test
     public void createObjectTestThrowsSQLException() throws SQLException {
         //init data
