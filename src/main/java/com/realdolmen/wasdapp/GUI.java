@@ -33,7 +33,6 @@ import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -172,16 +171,15 @@ public class GUI extends javax.swing.JFrame {
         System.out.println("File access cancelled by user.");
     }    
     }//GEN-LAST:event_jButton1ActionPerformed
-BigDecimal ParseBigDecimal(String strNumber) {
+double ParseDouble(String strNumber) {
    if (strNumber != null && strNumber.length() > 0) {
        try {
-          
-          return BigDecimal.parseBigDecimal(strNumber);
+          return Double.parseDouble(strNumber);
        } catch(Exception e) {
-          return BigDecimal.ONE;   // or some value to mark this field is wrong. or make a function validates field first ...
+          return -1;   // or some value to mark this field is wrong. or make a function validates field first ...
        }
    }
-   else return BigDecimal.ONE;
+   else return 0;
 }
     InformatieRepository informatieRepository = new InformatieRepository();
     InformatieService informatieService = new InformatieService(informatieRepository);
@@ -192,7 +190,7 @@ BigDecimal ParseBigDecimal(String strNumber) {
             System.out.println(line[i]);
            String[] data = line[i].split(",", -1);
            for (int x=0; x < data.length; x++){
-               info.add(new Informatie(data[0],data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], ParseBigDecimal(data[12]), data[13])) ;         
+               info.add(new Informatie(data[0],data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], ParseDouble(data[12]), data[13])) ;         
            }          
         }     
         try {

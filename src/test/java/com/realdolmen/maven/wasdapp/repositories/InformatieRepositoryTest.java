@@ -3,7 +3,6 @@ package com.realdolmen.maven.wasdapp.repositories;
 import com.realdolmen.wasdapp.domain.Informatie;
 import com.realdolmen.wasdapp.exceptions.NoQueryPossibleException;
 import com.realdolmen.wasdapp.repositories.InformatieRepository;
-import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.hamcrest.CoreMatchers;
@@ -57,7 +56,7 @@ public class InformatieRepositoryTest {
         when(resultSet.getString(InformatieRepository.TELEFOON)).thenReturn("telefoon");
         when(resultSet.getString(InformatieRepository.E_MAIL)).thenReturn("email");
         when(resultSet.getString(InformatieRepository.PERSOON)).thenReturn("persoon");
-        when(resultSet.getBigDecimal(InformatieRepository.PRIJS)).thenReturn(BigDecimal.ONE);
+        when(resultSet.getDouble(InformatieRepository.PRIJS)).thenReturn(1.0);
         
         //test the test objects
         Informatie result = informatieRepository.createObject(resultSet);
@@ -74,8 +73,7 @@ public class InformatieRepositoryTest {
         assertEquals("website", result.getWebsite());
         assertEquals("telefoon", result.getTelefoon());
         assertEquals("email", result.getEmail());
-        assertEquals(BigDecimal.ONE, result.getPrijs());
-        
+        assertThat(1.0, CoreMatchers.equalTo(result.getPrijs()));
        
         verify(resultSet, times(1)).getString(InformatieRepository.KEY);
         verify(resultSet, times(1)).getString(InformatieRepository.LOCATIE);
@@ -90,7 +88,7 @@ public class InformatieRepositoryTest {
         verify(resultSet, times(1)).getString(InformatieRepository.WEBSITE);
         verify(resultSet, times(1)).getString(InformatieRepository.TELEFOON);
         verify(resultSet, times(1)).getString(InformatieRepository.E_MAIL);
-        verify(resultSet, times(1)).getBigDecimal(InformatieRepository.PRIJS);
+        verify(resultSet, times(1)).getDouble(InformatieRepository.PRIJS);
     }
    
      @Test

@@ -30,9 +30,9 @@ public class NewMain {
         
         //insert item test
         ArrayList<Informatie> infos = new ArrayList<>();
-        infos.add(new Informatie("haha1", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x", BigDecimal.ONE, "Joren"));
-        infos.add(new Informatie("haha2", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x", BigDecimal.ONE, "Joren"));
-        infos.add(new Informatie("haha3", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x", BigDecimal.ONE, "Joren"));              
+        infos.add(new Informatie("haha1", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x",1.0, "Joren"));
+        infos.add(new Informatie("haha2", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x",1.0, "Joren"));
+        infos.add(new Informatie("haha3", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x",1.0, "Joren"));              
        infoservice.insertItems(infos);
        
        

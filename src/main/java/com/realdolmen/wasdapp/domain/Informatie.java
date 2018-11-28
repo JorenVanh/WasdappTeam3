@@ -13,14 +13,14 @@ import java.math.BigDecimal;
  */
 public class Informatie {
     private String titel,locatie, straat,gemeente, land, omschrijving, wiki_link, website, telefoon,email,persoon,nummer, postcode;
-    private BigDecimal prijs;
+    private Double prijs;
 
     public Informatie() {
     }
     
     
     
-    public Informatie(String titel, String locatie, String straat, String nummer, String postcode, String gemeente, String land, String omschrijving, String wiki_link, String website, String telefoon, String email, BigDecimal prijs, String persoon){
+    public Informatie(String titel, String locatie, String straat, String nummer, String postcode, String gemeente, String land, String omschrijving, String wiki_link, String website, String telefoon, String email, Double prijs, String persoon){
         this.titel = titel;
         this.locatie = locatie;
         this.straat = straat;
@@ -126,11 +126,11 @@ public class Informatie {
         this.persoon = persoon;
     }
 
-    public BigDecimal  getPrijs() {
+    public Double  getPrijs() {
         return prijs;
     }
 
-    public void setPrijs(BigDecimal  prijs) {
+    public void setPrijs(Double  prijs) {
         this.prijs = prijs;
     }
 
