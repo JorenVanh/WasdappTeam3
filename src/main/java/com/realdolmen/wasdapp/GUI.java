@@ -172,16 +172,16 @@ public class GUI extends javax.swing.JFrame {
         System.out.println("File access cancelled by user.");
     }    
     }//GEN-LAST:event_jButton1ActionPerformed
-BigDecimal ParseDouble(String strNumber) {
+BigDecimal ParseBigDecimal(String strNumber) {
    if (strNumber != null && strNumber.length() > 0) {
        try {
           
-          return BigDecimal.parseDouble(strNumber);
+          return BigDecimal.parseBigDecimal(strNumber);
        } catch(Exception e) {
-          return -1;   // or some value to mark this field is wrong. or make a function validates field first ...
+          return BigDecimal.ONE;   // or some value to mark this field is wrong. or make a function validates field first ...
        }
    }
-   else return 0;
+   else return BigDecimal.ONE;
 }
     InformatieRepository informatieRepository = new InformatieRepository();
     InformatieService informatieService = new InformatieService(informatieRepository);
@@ -192,7 +192,7 @@ BigDecimal ParseDouble(String strNumber) {
             System.out.println(line[i]);
            String[] data = line[i].split(",", -1);
            for (int x=0; x < data.length; x++){
-               info.add(new Informatie(data[0],data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], ParseDouble(data[12]), data[13])) ;         
+               info.add(new Informatie(data[0],data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], ParseBigDecimal(data[12]), data[13])) ;         
            }          
         }     
         try {
