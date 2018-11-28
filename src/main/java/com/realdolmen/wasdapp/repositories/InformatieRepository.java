@@ -66,7 +66,7 @@ public class InformatieRepository extends AbstractRepository<Informatie, String>
             informatie.setTelefoon(resultSet.getString(TELEFOON));
             informatie.setEmail(resultSet.getString(E_MAIL));
             informatie.setPersoon(resultSet.getString(PERSOON));
-            informatie.setPrijs(resultSet.getDouble(PRIJS));
+            informatie.setPrijs(resultSet.getBigDecimal(PRIJS));
 
              return informatie;
             

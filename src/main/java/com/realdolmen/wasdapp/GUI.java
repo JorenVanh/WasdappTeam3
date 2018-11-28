@@ -33,6 +33,7 @@ import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -171,10 +172,11 @@ public class GUI extends javax.swing.JFrame {
         System.out.println("File access cancelled by user.");
     }    
     }//GEN-LAST:event_jButton1ActionPerformed
-double ParseDouble(String strNumber) {
+BigDecimal ParseDouble(String strNumber) {
    if (strNumber != null && strNumber.length() > 0) {
        try {
-          return Double.parseDouble(strNumber);
+          
+          return BigDecimal.parseDouble(strNumber);
        } catch(Exception e) {
           return -1;   // or some value to mark this field is wrong. or make a function validates field first ...
        }

@@ -5,20 +5,22 @@
  */
 package com.realdolmen.wasdapp.domain;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author JVHBL61
  */
 public class Informatie {
     private String titel,locatie, straat,gemeente, land, omschrijving, wiki_link, website, telefoon,email,persoon,nummer, postcode;
-    private double prijs;
+    private BigDecimal prijs;
 
     public Informatie() {
     }
     
     
     
-    public Informatie(String titel, String locatie, String straat, String nummer, String postcode, String gemeente, String land, String omschrijving, String wiki_link, String website, String telefoon, String email, double prijs, String persoon){
+    public Informatie(String titel, String locatie, String straat, String nummer, String postcode, String gemeente, String land, String omschrijving, String wiki_link, String website, String telefoon, String email, BigDecimal prijs, String persoon){
         this.titel = titel;
         this.locatie = locatie;
         this.straat = straat;
@@ -124,11 +126,11 @@ public class Informatie {
         this.persoon = persoon;
     }
 
-    public double getPrijs() {
+    public BigDecimal  getPrijs() {
         return prijs;
     }
 
-    public void setPrijs(double prijs) {
+    public void setPrijs(BigDecimal  prijs) {
         this.prijs = prijs;
     }
 

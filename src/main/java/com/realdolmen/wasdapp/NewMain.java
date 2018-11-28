@@ -9,6 +9,7 @@ import com.realdolmen.wasdapp.domain.Informatie;
 import com.realdolmen.wasdapp.exceptions.NoQueryPossibleException;
 import com.realdolmen.wasdapp.repositories.InformatieRepository;
 import com.realdolmen.wasdapp.services.InformatieService;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 /**
@@ -29,9 +30,9 @@ public class NewMain {
         
         //insert item test
         ArrayList<Informatie> infos = new ArrayList<>();
-        infos.add(new Informatie("haha1", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x", 0, "Joren"));
-        infos.add(new Informatie("haha2", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x", 0, "Joren"));
-        infos.add(new Informatie("haha3", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x", 0, "Joren"));              
+        infos.add(new Informatie("haha1", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x", BigDecimal.ONE, "Joren"));
+        infos.add(new Informatie("haha2", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x", BigDecimal.ONE, "Joren"));
+        infos.add(new Informatie("haha3", "x", "x", "123", "234", "x", "x", "x", "x", "x", "x", "x", BigDecimal.ONE, "Joren"));              
        infoservice.insertItems(infos);
        
        
