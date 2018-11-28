@@ -1,33 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.realdolmen.maven.wasdapp.repositories;
 
 import com.realdolmen.wasdapp.domain.Informatie;
 import com.realdolmen.wasdapp.exceptions.NoQueryPossibleException;
 import com.realdolmen.wasdapp.repositories.InformatieRepository;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.E_MAIL;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.GEMEENTE;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.LAND;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.LOCATIE;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.NUMMER;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.OMSCHRIJVING;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.PERSOON;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.POSTCODE;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.PRIJS;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.STRAAT;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.TELEFOON;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.WEBSITE;
-import static com.realdolmen.wasdapp.repositories.InformatieRepository.WIKIPEDIA_LINK;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.hamcrest.CoreMatchers;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +16,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import org.mockito.runners.MockitoJUnitRunner;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
 
 /**
  *
