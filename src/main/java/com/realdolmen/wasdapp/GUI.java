@@ -21,7 +21,9 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.BarcodeQRCode;
 import static com.itextpdf.text.pdf.PdfFileSpecification.url;
 import com.itextpdf.text.pdf.PdfWriter;
 import static com.realdolmen.wasdapp.repositories.AbstractRepository.LOGIN;
@@ -207,22 +209,22 @@ double ParseDouble(String strNumber) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        
-            
-            pdf.open();
-            
-        
+        }       
+            pdf.open();        
             List<Informatie> info = new ArrayList<>();
             List<Informatie> informatie;
         try {
+            
             informatie = informatieRepository.findAll();
          for(Informatie i:informatie){
-                com.itextpdf.text.Font font = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE, 25, BaseColor.BLACK);
+             BarcodeQRCode code = new BarcodeQRCode(i.getTitel(), 200, 200, null);
+             Image codeIMG = code.getImage();
+             com.itextpdf.text.Font font = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE, 25, BaseColor.BLACK);
              Paragraph lijn = new Paragraph(i.getTitel(),font);
              pdf.add( Chunk.NEWLINE );
              pdf.add(lijn);
+             pdf.add( Chunk.NEWLINE );
+             pdf.add(codeIMG);
              pdf.newPage();
     }
         } catch (NoQueryPossibleException ex) {
@@ -230,7 +232,6 @@ double ParseDouble(String strNumber) {
         } catch (DocumentException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-
             pdf.close();
        
     }//GEN-LAST:event_jButton3ActionPerformed
