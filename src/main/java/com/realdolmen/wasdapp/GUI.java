@@ -83,6 +83,7 @@ public class GUI extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CSV ->  PDF generater");
 
         jButton1.setText("Selecteer csv");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -187,7 +188,7 @@ double ParseDouble(String strNumber) {
         String[] line = jTextArea1.getText().split("\n");
         for (int i=1;i<line.length;i++){
             System.out.println(line[i]);
-           String[] data = line[i].split(",");
+           String[] data = line[i].split(",", -1);
            for (int x=0; x < data.length; x++){
                info.add(new Informatie(data[0],data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], ParseDouble(data[12]), data[13])) ;         
            }          
