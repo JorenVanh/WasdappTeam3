@@ -5,6 +5,8 @@
  */
 package com.realdolmen.wasdapp;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import com.realdolmen.wasdapp.domain.Informatie;
 import com.realdolmen.wasdapp.exceptions.NoQueryPossibleException;
 import com.realdolmen.wasdapp.repositories.InformatieRepository;
@@ -15,7 +17,26 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.text.Document;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import static com.itextpdf.text.pdf.PdfFileSpecification.url;
+import com.itextpdf.text.pdf.PdfWriter;
+import static com.realdolmen.wasdapp.repositories.AbstractRepository.LOGIN;
+import static com.realdolmen.wasdapp.repositories.AbstractRepository.PASSWORD;
+import com.realdolmen.wasdapp.services.InformatieService;
+import java.awt.Font;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -124,7 +145,14 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public static final String LOGIN = "root";
+    public static final String PASSWORD = "root";
+    private String url;
+    public Connection createConnection() throws SQLException {
+          System.out.println("trying connection");
+        return DriverManager.getConnection(url, LOGIN, PASSWORD);
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             int returnVal = fileChooser.showOpenDialog(this);
     if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -151,6 +179,7 @@ double ParseDouble(String strNumber) {
    else return 0;
 }
     InformatieRepository informatieRepository = new InformatieRepository();
+    InformatieService informatieService = new InformatieService(informatieRepository);
     ArrayList<Informatie> info = new ArrayList<Informatie>();
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String[] line = jTextArea1.getText().split("\n");
@@ -169,7 +198,41 @@ double ParseDouble(String strNumber) {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String bestand_naam = "C:\\pdfInfo\\Informatie.pdf";
+        String bestand_naam = "C:\\Download\\Informatie.pdf";
+        Document pdf = new Document();
+        
+        try {
+            PdfWriter.getInstance(pdf, new FileOutputStream(bestand_naam));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+            
+            pdf.open();
+            
+        
+            List<Informatie> info = new ArrayList<>();
+            List<Informatie> informatie;
+        try {
+            informatie = informatieRepository.findAll();
+         for(Informatie i:informatie){
+                com.itextpdf.text.Font font = FontFactory.getFont(FontFactory.HELVETICA_OBLIQUE, 25, BaseColor.BLACK);
+             Paragraph lijn = new Paragraph(i.getTitel(),font);
+             pdf.add( Chunk.NEWLINE );
+             pdf.add(lijn);
+             pdf.newPage();
+    }
+        } catch (NoQueryPossibleException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+            pdf.close();
+       
     }//GEN-LAST:event_jButton3ActionPerformed
     /**
      * @param args the command line arguments
