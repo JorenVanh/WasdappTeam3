@@ -14,7 +14,7 @@ website varchar(40),
 telefoon varchar(25),
 e_mail varchar(40),
 prijs double,
-persoon varchar(50)
+persoon varchar(250)
 );
 
 
