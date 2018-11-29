@@ -5,6 +5,7 @@
  */
 package com.realdolmen.wasdapp.domain;
 
+import com.opencsv.bean.CsvBindByName;
 import java.math.BigDecimal;
 
 /**
@@ -12,7 +13,19 @@ import java.math.BigDecimal;
  * @author JVHBL61
  */
 public class Informatie {
-    private String titel,locatie, straat,gemeente, land, omschrijving, wiki_link, website, telefoon,email,persoon,nummer, postcode;
+    @CsvBindByName
+    private String locatie, straat,gemeente, land, omschrijving,website, telefoon,persoon,nummer, postcode;
+    
+    @CsvBindByName(column = "titel")
+    private String titel;
+    
+    @CsvBindByName(column = "wikipedia_link")
+    private String wiki_link;
+    
+    @CsvBindByName(column = "e_mail")
+    private String email;
+    
+    @CsvBindByName
     private Double prijs;
 
     public Informatie() {
