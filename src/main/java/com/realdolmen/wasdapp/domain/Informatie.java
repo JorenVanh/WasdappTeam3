@@ -30,9 +30,7 @@ public class Informatie {
 
     public Informatie() {
     }
-    
-    
-    
+     
     public Informatie(String titel, String locatie, String straat, String nummer, String postcode, String gemeente, String land, String omschrijving, String wiki_link, String website, String telefoon, String email, Double prijs, String persoon){
         this.titel = titel;
         this.locatie = locatie;
@@ -161,8 +159,5 @@ public class Informatie {
 
     public void setPostcode(String postcode) {
         this.postcode = postcode;
-    }
-    
-    
-    
+    }   
 }
