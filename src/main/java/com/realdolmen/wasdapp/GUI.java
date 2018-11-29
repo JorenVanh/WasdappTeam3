@@ -26,6 +26,8 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BarcodeQRCode;
 import static com.itextpdf.text.pdf.PdfFileSpecification.url;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.opencsv.bean.CsvToBean;
+import com.opencsv.bean.CsvToBeanBuilder;
 import static com.realdolmen.wasdapp.repositories.AbstractRepository.LOGIN;
 import static com.realdolmen.wasdapp.repositories.AbstractRepository.PASSWORD;
 import com.realdolmen.wasdapp.services.InformatieService;
@@ -33,11 +35,15 @@ import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -150,6 +156,7 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     public static final String LOGIN = "root";
     public static final String PASSWORD = "root";
+    private String bestand;
     private String url;
     public Connection createConnection() throws SQLException {
           System.out.println("trying connection");
@@ -163,6 +170,7 @@ public class GUI extends javax.swing.JFrame {
         try {
           // What to do with the file, e.g. display it in a TextArea
          jTextArea1.read( new FileReader( file.getAbsolutePath() ), null );
+         bestand = file.getAbsolutePath();
          jLabel1.setText("Path: " + file.getAbsolutePath());
         } catch (IOException ex) {
           System.out.println("problem accessing file"+file.getAbsolutePath());
@@ -181,17 +189,33 @@ double ParseDouble(String strNumber) {
    }
    else return 0;
 }
+
     InformatieRepository informatieRepository = new InformatieRepository();
     InformatieService informatieService = new InformatieService(informatieRepository);
     ArrayList<Informatie> info = new ArrayList<Informatie>();
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(bestand));
+            CsvToBean<Informatie> csvToBean = new CsvToBeanBuilder(reader)
+                    .withType(Informatie.class)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .build();
+
+            Iterator<Informatie> csvUserIterator = csvToBean.iterator();
+            while (csvUserIterator.hasNext()) 
+            {    Informatie infor = csvUserIterator.next();
+                info.add(new Informatie(infor.getTitel(),infor.getLocatie(),infor.getStraat(),infor.getNummer(),infor.getPostcode(),infor.getGemeente(),infor.getLand(),infor.getOmschrijving(),infor.getWiki_link(),infor.getWebsite(),infor.getTelefoon(),infor.getEmail(),infor.getPrijs(),infor.getPersoon())) ;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         String[] line = jTextArea1.getText().split("\n");
         for (int i=1;i<line.length;i++){
             System.out.println(line[i]);
-           String[] data = line[i].split(",", -1);
-           for (int x=0; x < data.length; x++){
-               info.add(new Informatie(data[0],data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], ParseDouble(data[12]), data[13])) ;         
-           }          
+//           String[] data = line[i].split(",", -1);
+//           for (int x=0; x < data.length; x++){
+//               info.add(new Informatie(data[0],data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], ParseDouble(data[12]), data[13])) ;         
+//           }          
         }     
         try {
             informatieRepository.insertItems(info);
