@@ -83,10 +83,7 @@ public void insertItems(ArrayList<C> infos) throws NoQueryPossibleException{
             pstatement.executeUpdate();
         }
             
-            
-            
-            
-            
+                        
             /*String max = "SELECT max(" + idName + ") AS max FROM " + tableName;
             System.out.println(max);
             pstatement = connection.prepareStatement(max);

@@ -3,9 +3,11 @@ package com.realdolmen.maven.wasdapp.repositories;
 import com.realdolmen.wasdapp.domain.Informatie;
 import com.realdolmen.wasdapp.exceptions.NoQueryPossibleException;
 import com.realdolmen.wasdapp.repositories.InformatieRepository;
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.hamcrest.CoreMatchers;
+import org.hamcrest.Matcher;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -155,6 +157,8 @@ public class InformatieRepositoryTest {
         verifyNoMoreInteractions(resultSet);
     }
 }
+
+
           
         
   
