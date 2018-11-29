@@ -18,8 +18,5 @@ public class NoQueryPossibleException extends Exception{
         super(message);
     }
 
-    @Override
-    public String toString() {
-        return MESSAGE; //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

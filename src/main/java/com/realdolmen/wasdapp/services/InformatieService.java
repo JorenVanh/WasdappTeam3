@@ -32,10 +32,7 @@ public class InformatieService {
         public void insertItems(ArrayList<Informatie> infos) throws NoQueryPossibleException{
         informatieRepository.insertItems(infos);
     }
-//     public Informatie insertData(Informatie informatie) throws NoQueryPossibleException {
-//        int i = informatieRepository.insertItem(informatie);
-//        return findAddressById(i);
-//    }
+
     
     
     
