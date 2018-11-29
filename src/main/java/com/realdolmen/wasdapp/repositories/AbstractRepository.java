@@ -81,6 +81,7 @@ public void insertItems(ArrayList<C> infos) throws NoQueryPossibleException{
             System.out.println(query);
             PreparedStatement pstatement = connection.prepareStatement(query);
             pstatement.executeUpdate();
+            
         }
             
                         
