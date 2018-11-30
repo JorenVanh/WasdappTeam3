@@ -62,6 +62,8 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI() {
         initComponents();
+        jButton2.setEnabled(false);
+        jButton3.setEnabled(false);
     }
 
     /**
@@ -185,6 +187,9 @@ public class GUI extends javax.swing.JFrame {
                 "Kies een geldig csv bestand.",
                  "Fout bij het selecteren van bestand",
                 JOptionPane.ERROR_MESSAGE);
+                jButton2.setEnabled(false);
+            }else{
+                jButton2.setEnabled(true);
             }
             
         } catch (IOException ex) {
@@ -223,20 +228,17 @@ double ParseDouble(String strNumber) {
             }
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String[] line = jTextArea1.getText().split("\n");
-        for (int i=1;i<line.length;i++){
-            System.out.println(line[i]);
-//           String[] data = line[i].split(",", -1);
-//           for (int x=0; x < data.length; x++){
-//               info.add(new Informatie(data[0],data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], ParseDouble(data[12]), data[13])) ;         
-//           }          
-        }     
+        }  
         try {
             informatieRepository.insertItems(info);
+            JOptionPane.showMessageDialog(new Frame(),
+                "Data succesvol doorgestuurd",
+                 "Succes",
+                JOptionPane.INFORMATION_MESSAGE);
         } catch (NoQueryPossibleException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        jButton3.setEnabled(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
