@@ -33,6 +33,7 @@ import static com.realdolmen.wasdapp.repositories.AbstractRepository.PASSWORD;
 import com.realdolmen.wasdapp.services.InformatieService;
 import java.awt.Desktop;
 import java.awt.Font;
+import java.awt.Frame;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -46,6 +47,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.JOptionPane;
+import org.apache.commons.io.FilenameUtils;
+import javax.swing.JFrame;
 
 /**
  *
@@ -173,6 +177,16 @@ public class GUI extends javax.swing.JFrame {
          jTextArea1.read( new FileReader( file.getAbsolutePath() ), null );
          bestand = file.getAbsolutePath();
          jLabel1.setText("Path: " + file.getAbsolutePath());
+         String extensie = FilenameUtils.getExtension(file.getAbsoluteFile().getName());
+            System.out.println(extensie);
+            
+            if(!"csv".equals(extensie)){
+                JOptionPane.showMessageDialog(new Frame(),
+                "Kies een geldig csv bestand.",
+                 "Fout bij het selecteren van bestand",
+                JOptionPane.ERROR_MESSAGE);
+            }
+            
         } catch (IOException ex) {
           System.out.println("problem accessing file"+file.getAbsolutePath());
         }
