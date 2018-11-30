@@ -31,6 +31,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import static com.realdolmen.wasdapp.repositories.AbstractRepository.LOGIN;
 import static com.realdolmen.wasdapp.repositories.AbstractRepository.PASSWORD;
 import com.realdolmen.wasdapp.services.InformatieService;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -258,6 +259,12 @@ double ParseDouble(String strNumber) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
             pdf.close();
+            File mijnestand = new File(bestand_naam);
+        try {
+            Desktop.getDesktop().open(mijnestand);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }//GEN-LAST:event_jButton3ActionPerformed
     /**
