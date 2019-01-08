@@ -97,6 +97,7 @@ public class Main {
         } else {
             System.out.println("geen csv of json bestand");
         }
+        
 
     }
 }
