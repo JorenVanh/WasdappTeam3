@@ -6,7 +6,6 @@
 package com.realdolmen.wasdapp.repositories;
 
 import com.realdolmen.wasdapp.domain.Informatie;
-import com.realdolmen.wasdapp.GUI;
 import com.realdolmen.wasdapp.exceptions.NoQueryPossibleException;
 import static com.realdolmen.wasdapp.repositories.InformatieRepository.LOCATIE;
 import static com.realdolmen.wasdapp.repositories.InformatieRepository.STRAAT;
